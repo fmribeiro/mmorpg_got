@@ -48,7 +48,6 @@ JogoDAO.prototype.acao = function (acao) {
     mongoClient.collection("acao", function (erro, collection) {
       var date = new Date();
       var tempo = null;
-      console.log("acao: " + acao.acao);
       switch (parseInt(acao.acao)) {
         case 1:
           tempo = 1 * 60 * 60000;
@@ -63,7 +62,6 @@ JogoDAO.prototype.acao = function (acao) {
           tempo = 5 * 60 * 60000;
           break;
       }
-      console.log("tempo: " + tempo);
       acao.acao_termina_em = date.getTime() + tempo;
 
       collection.insert({
@@ -105,7 +103,6 @@ JogoDAO.prototype.getAcoes = function (usuario, res) {
           "acao.acao_termina_em": { $gt: momentoAtual }
         })
         .toArray(function (erro, resultado) {
-          console.log(resultado);
           res.render("pergaminhos", { acoes: resultado });
           mongoClient.close();
         });

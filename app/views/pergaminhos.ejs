@@ -15,8 +15,6 @@
 					}
 					var date = new Date();
 					var momentoAtual = date.getTime();
-					console.log(momentoAtual);
-					console.log(acoes[i].acao.acao_termina_em);
 
 					var segundosRestantes = Math.round((parseInt(acoes[i].acao.acao_termina_em) - momentoAtual) /1000);
 				%>

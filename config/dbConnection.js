@@ -4,7 +4,7 @@
 var MongoClient = require("mongodb");
 
 var connMongoDb = function() {
-  console.log("Entrou na funcao de conexao");
+  console.log("Entrou na funcao de conexao do MongoDB");
   var db = new MongoClient.Db(
     "got",
     new MongoClient.Server("localhost", 27017, {}),
