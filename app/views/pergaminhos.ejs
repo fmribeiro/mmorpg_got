@@ -1,0 +1,32 @@
+<div id="pergaminhos">
+	<h3>Pergaminhos</h3>
+
+	<ul>
+
+		<% for(var i=0;i < acoes.length;i++) {%>
+
+			<% 
+					var txtAcao = "";
+					switch(parseInt(acoes[i].acao.acao)){
+						case 1: txtAcao = 'Coletar recursos';break;
+						case 2: txtAcao = 'Enforcar aldeão';break;
+						case 3: txtAcao = 'Ensinar história';break;
+						case 4: txtAcao = 'Ensinar magia';break;
+					}
+					var date = new Date();
+					var momentoAtual = date.getTime();
+					console.log(momentoAtual);
+					console.log(acoes[i].acao.acao_termina_em);
+
+					var segundosRestantes = Math.round((parseInt(acoes[i].acao.acao_termina_em) - momentoAtual) /1000);
+				%>
+				<li>
+					<%= acoes[i].acao.quantidade%>  <%= txtAcao%>
+					- <small>restam <span class="tempoRestante"><%= segundosRestantes%></span> segundos 
+						-<a href="#">revogar ordem</a>
+					</small>
+				</li>
+				<% }%>
+
+	</ul>
+</div>
