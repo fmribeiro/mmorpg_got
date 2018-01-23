@@ -23,7 +23,7 @@
 				<li>
 					<%= acoes[i].acao.quantidade%>  <%= txtAcao%>
 					- <small>restam <span class="tempoRestante"><%= segundosRestantes%></span> segundos 
-						-<a href="#">revogar ordem</a>
+						-<a href="/revogar_acao?id_acao=<%=acoes[i]._id%>">revogar ordem</a>
 					</small>
 				</li>
 				<% }%>

@@ -1,4 +1,4 @@
-module.exports.jogo = function(application, req, res) {
+module.exports.jogo = function (application, req, res) {
   if (req.session.autorizado !== true) {
     res.render("index", { validacao: {}, dadosForm: {} });
   }
@@ -17,20 +17,20 @@ module.exports.jogo = function(application, req, res) {
   jogoDAO.iniciaJogo(usuario, casa, res, msg);
 };
 
-module.exports.sair = function(application, req, res) {
-  req.session.destroy(function(err) {
+module.exports.sair = function (application, req, res) {
+  req.session.destroy(function (err) {
     res.render("index", { validacao: {}, dadosForm: {} });
   });
 };
 
-module.exports.suditos = function(application, req, res) {
+module.exports.suditos = function (application, req, res) {
   if (req.session.autorizado !== true) {
     res.render("index", { validacao: {}, dadosForm: {} });
   }
   res.render("aldeoes", { validacao: {} });
 };
 
-module.exports.pergaminhos = function(application, req, res) {
+module.exports.pergaminhos = function (application, req, res) {
   if (req.session.autorizado !== true) {
     res.render("index", { validacao: {}, dadosForm: {} });
   }
@@ -44,7 +44,7 @@ module.exports.pergaminhos = function(application, req, res) {
 
 };
 
-module.exports.ordenar_acao_sudito = function(application, req, res) {
+module.exports.ordenar_acao_sudito = function (application, req, res) {
   if (req.session.autorizado !== true) {
     res.render("index", { validacao: {}, dadosForm: {} });
   }
@@ -69,3 +69,14 @@ module.exports.ordenar_acao_sudito = function(application, req, res) {
 
   res.redirect("jogo?msg=S");
 };
+
+
+module.exports.revogar_acao = function (application, req, res) {
+  var urlQuery = req.query;
+
+  var connection = application.config.dbConnection;
+  var JogoDAO = new application.app.models.JogoDAO(connection);
+
+  var _id = urlQuery.id_acao;
+  JogoDAO.revogarAcao(_id, res);
+}
